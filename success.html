@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Generating PDF</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            background-color: #ffffff;
+        }
+        .spinner-border {
+            width: 3rem;
+            height: 3rem;
+            margin-bottom: 20px;
+        }
+        .success-icon {
+            font-size: 4rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="loading-state">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <h1>Payment Successful!</h1>
+            <p class="lead">Your professional evidence pack is now being generated. Please wait, your download will start automatically.</p>
+        </div>
+        <div id="success-state" style="display: none;">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h1>Download Complete!</h1>
+            <p class="lead">Your Chargeback Evidence Pack has been successfully generated and downloaded.</p>
+            <a href="index.html" class="btn btn-primary mt-3">Generate Another Pack</a>
+        </div>
+        <div id="error-state" style="display: none;">
+            <i class="fas fa-times-circle" style="font-size: 4rem; color: #dc3545; margin-bottom: 20px;"></i>
+            <h1>Generation Error</h1>
+            <p class="lead">An error occurred during PDF generation. Please contact support with your order details.</p>
+            <a href="index.html" class="btn btn-primary mt-3">Go Back Home</a>
+        </div>
+    </div>
+
+    <script>
+        // This script will be executed on the success page
+        document.addEventListener('DOMContentLoaded', function() {
+            const formDataJSON = localStorage.getItem('chargebackFormData');
+            const loadingState = document.getElementById('loading-state');
+            const successState = document.getElementById('success-state');
+            const errorState = document.getElementById('error-state');
+
+            if (formDataJSON) {
+                try {
+                    const formData = JSON.parse(formDataJSON);
+                    
+                    // The generateEvidencePack function is in script.js, which is not loaded here.
+                    // We need to duplicate the core logic or load script.js.
+                    // For simplicity and to keep the success page standalone, I will duplicate the core logic.
+
+                    // ==================== PDF GENERATION LOGIC (DUPLICATED FROM script.js) ====================
+                    function generateEvidencePack(formData) {
+                        // Format date nicely
+                        const generatedDate = new Date().toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        });
+
+                        // Create beautiful HTML template (The improved template from script.js)
+                        const htmlContent = `
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <meta charset="UTF-8">
+                                <style>
+                                    * { margin: 0; padding: 0; box-sizing: border-box; }
+                                    body { font-family: 'Times New Roman', Times, serif; color: #212529; line-height: 1.5; font-size: 11pt; }
+                                    .container { padding: 50px 60px; max-width: 800px; margin: 0 auto; }
+                                    .header { background: #003366; color: white; padding: 25px 30px; margin-bottom: 30px; border-bottom: 5px solid #FFC300; }
+                                    .header h1 { font-size: 24pt; font-weight: 700; margin-bottom: 5px; letter-spacing: 1px; text-transform: uppercase; }
+                                    .logo-placeholder { float: right; width: 150px; height: 50px; background: #FFC300; color: #003366; text-align: center; line-height: 50px; font-weight: bold; font-size: 10pt; margin-bottom: 10px; }
+                                    .header .subtitle { font-size: 10pt; opacity: 0.9; }
+                                    .section { margin-bottom: 30px; page-break-inside: avoid; }
+                                    .section-title { color: #003366; font-size: 14pt; font-weight: 700; margin-bottom: 10px; padding-bottom: 5px; border-bottom: 2px solid #FFC300; text-transform: uppercase; }
+                                    .info-box { background: #ffffff; border: 1px solid #e9ecef; padding: 15px 20px; border-radius: 0; margin-bottom: 15px; }
+                                    .info-row { display: flex; padding: 8px 0; border-bottom: 1px dashed #e9ecef; }
+                                    .info-row:last-child { border-bottom: none; }
+                                    .info-label { font-weight: 600; color: #495057; min-width: 200px; font-size: 10pt; }
+                                    .info-value { color: #212529; flex: 1; font-size: 10pt; }
+                                    .text-content { background: #f8f9fa; padding: 15px; border: 1px solid #e9ecef; white-space: pre-wrap; line-height: 1.6; font-size: 10pt; }
+                                    .badge { display: inline-block; padding: 4px 8px; background: #003366; color: white; border-radius: 3px; font-size: 9pt; font-weight: 600; margin-left: 10px; }
+                                    .footer { margin-top: 40px; padding-top: 15px; border-top: 1px solid #e9ecef; text-align: center; color: #6c757d; font-size: 9pt; }
+                                </style>
+                            </head>
+                            <body>
+                                <div class="container">
+                                    <div class="header">
+                                        <div class="logo-placeholder" style="float: right; width: 150px; height: 50px; background: #FFC300; color: #003366; text-align: center; line-height: 50px; font-weight: bold; font-size: 10pt; margin-bottom: 10px;">[LOGO HERE]</div>
+                                        <h1>CHARGEBACK EVIDENCE PACK</h1>
+                                        <div class="subtitle">Order ${formData.orderId} • Generated ${generatedDate}</div>
+                                        <div style="clear: both;"></div>
+                                    </div>
+
+                                    <div class="section">
+                                        <h2 class="section-title">Order Information</h2>
+                                        <div class="info-box">
+                                            <div class="info-row">
+                                                <div class="info-label">Order ID:</div>
+                                                <div class="info-value"><strong>${formData.orderId}</strong></div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Order Date:</div>
+                                                <div class="info-value">${formData.orderDate}</div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Order Amount:</div>
+                                                <div class="info-value"><strong style="color: #003366; font-size: 12pt;">$${formData.orderAmount}</strong></div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Platform:</div>
+                                                <div class="info-value">${formData.platform}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section">
+                                        <h2 class="section-title">Merchant & Customer Information</h2>
+                                        <div class="info-box">
+                                            <div class="info-row">
+                                                <div class="info-label">Business Name:</div>
+                                                <div class="info-value">${formData.businessName}</div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Business Contact:</div>
+                                                <div class="info-value">${formData.businessContact}</div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Customer Name:</div>
+                                                <div class="info-value">${formData.customerName}</div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Customer Email:</div>
+                                                <div class="info-value">${formData.customerEmail}</div>
+                                            </div>
+                                            <div class="info-row">
+                                                <div class="info-label">Billing/Shipping Address:</div>
+                                                <div class="info-value">${formData.billingShippingAddress.replace(/\n/g, '<br>')}</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="section">
+                                        <h2 class="section-title">Order Details</h2>
+                                        <div class="text-content">${formData.orderSummary}</div>
+                                    </div>
+
+                                    <div class="section">
+                                        <h2 class="section-title">Shipping & Delivery Proof <span class="badge">✓ VERIFIED</span></h2>
+                                        <div class="info-box">
+                                            <div class="info-row">
+                                                <div class="info-label">Shipping Address:</div>
+                                                <div class="info-value">${formData.shippingAddress.replace(/\n/g, '<br>')}</div>
+                                            </div>
+                                            ${formData.trackingNumber ? `<div class="info-row"><div class="info-label">Tracking Number:</div><div class="info-value"><strong>${formData.trackingNumber}</strong></div></div>` : ''}
+                                            ${formData.deliveryDate ? `<div class="info-row"><div class="info-label">Delivery Date:</div><div class="info-value"><strong style="color: #003366;">${formData.deliveryDate}</strong></div></div>` : ''}
+                                        </div>
+                                    </div>
+
+                                    ${formData.customerCommunication ? `<div class="section"><h2 class="section-title">Communication History</h2><div class="text-content">${formData.customerCommunication}</div></div>` : ''}
+
+                                    ${formData.refundPolicy ? `<div class="section"><h2 class="section-title">Refund/Terms of Service Policy</h2><div class="text-content">${formData.refundPolicy}</div></div>` : ''}
+
+                                    ${formData.rebuttalMemo ? `<div class="section"><h2 class="section-title">Rebuttal Memo</h2><div class="text-content">${formData.rebuttalMemo}</div></div>` : ''}
+
+                                    <div class="footer">
+                                        Generated by Chargeback Evidence Pack Generator<br>
+                                        Document ID: ${formData.orderId}-${Date.now()}
+                                    </div>
+                                </div>
+                            </body>
+                            </html>
+                        `;
+
+                        // Configure html2pdf options
+                        const opt = {
+                            margin: 10,
+                            filename: `Chargeback_Evidence_${formData.orderId}_${new Date().toISOString().split('T')[0]}.pdf`,
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { scale: 2 },
+                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                        };
+
+                        // Generate and download PDF
+                        html2pdf().set(opt).from(htmlContent).save().then(() => {
+                            loadingState.style.display = 'none';
+                            successState.style.display = 'block';
+                            localStorage.removeItem('chargebackFormData'); // Clean up
+                        }).catch((error) => {
+                            console.error('PDF generation error:', error);
+                            loadingState.style.display = 'none';
+                            errorState.style.display = 'block';
+                            localStorage.removeItem('chargebackFormData'); // Clean up
+                        });
+                    }
+                    // ==================== END PDF GENERATION LOGIC ====================
+
+                    // Trigger PDF generation
+                    generateEvidencePack(formData);
+
+                } catch (e) {
+                    console.error("Error parsing form data from localStorage:", e);
+                    loadingState.style.display = 'none';
+                    errorState.style.display = 'block';
+                }
+            } else {
+                // No form data found, likely a direct visit
+                loadingState.style.display = 'none';
+                errorState.style.display = 'block';
+                document.querySelector('#error-state h1').textContent = 'Access Denied';
+                document.querySelector('#error-state p').textContent = 'No payment data found. Please start the process from the main page.';
+            }
+        });
+    </script>
+</body>
+</html>
