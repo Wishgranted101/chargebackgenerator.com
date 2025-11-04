@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Title - Chargeback Generator Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .article-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+        }
+        .article-header h1 {
+            font-size: 2.5rem;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        .article-header .meta {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+        .article-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+        .article-content h2 {
+            color: #007bff;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-left: 4px solid #007bff;
+            padding-left: 15px;
+        }
+        .back-to-blog {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar (Simple placeholder for consistency) -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Chargeback Generator</a>
+            <a class="btn btn-outline-light" href="blog.html">Blog</a>
+        </div>
+    </nav>
+
+    <div class="article-container">
+        <div class="article-header">
+            <h1 id="article-title"></h1>
+            <p class="meta">Posted on November 3, 2025 | Category: Strategy</p>
+        </div>
+        <div class="article-content" id="article-content">
+            <!-- Markdown content will be inserted here -->
+        </div>
+        <div class="back-to-blog">
+            <a href="blog.html" class="btn btn-outline-secondary">&larr; Back to Blog</a>
+        </div>
+    </div>
+
+    <!-- Footer (Placeholder - will be updated in next phase) -->
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2025 Chargeback Generator. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script to load markdown content
+        document.addEventListener('DOMContentLoaded', function() {
+            const articleContentDiv = document.getElementById('article-content');
+            const articleTitle = document.getElementById('article-title');
+            const articlePath = articleContentDiv.getAttribute('data-article-path');
+
+            if (articlePath) {
+                fetch(articlePath)
+                    .then(response => response.text())
+                    .then(markdown => {
+                        // Basic markdown to HTML conversion (for demonstration)
+                        // In a real deployment, you would use a proper markdown library or server-side rendering
+                        const html = marked.parse(markdown);
+                        articleContentDiv.innerHTML = html;
+                        
+                        // Extract title from the first H1 in the markdown
+                        const titleMatch = markdown.match(/^#\s*(.*)/m);
+                        if (titleMatch && titleMatch[1]) {
+                            articleTitle.textContent = titleMatch[1];
+                            document.title = titleMatch[1] + " - Chargeback Generator Blog";
+                        }
+                    })
+                    .catch(error => {
+                        articleContentDiv.innerHTML = '<p class="text-danger">Error loading article content.</p>';
+                        console.error('Error loading article:', error);
+                    });
+            }
+        });
+    </script>
+    <!-- Include a simple markdown parser for local testing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked@4.0.10/marked.min.js"></script>
+</body>
+</html>
