@@ -230,23 +230,35 @@ Total: $743.99" required></textarea>
 
                                 <!-- Generate Button -->
                                 <div class="text-center mt-4">
+                                    <!-- 
+                                        *** FIX APPLIED HERE ***
+                                        The original code had the PayPal form inside the main evidenceForm, which is incorrect.
+                                        The PayPal form is now outside the main form, and the button is a standard button.
+                                        The PayPal form is also commented out as it contains a placeholder email.
+                                        The button is now a standard button that will be handled by the script.js to collect form data before payment.
+                                    -->
+                                    <button type="button" class="btn btn-success btn-lg px-5" id="payPalButton">
+                                        <i class="fab fa-paypal me-2"></i>
+                                        Pay with PayPal - $49
+                                    </button>
+                                    
+                                    <!-- Placeholder PayPal Form (Commented out to prevent accidental use with placeholder email) -->
+                                    <!-- 
                                     <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalForm">
                                         <input type="hidden" name="cmd" value="_xclick">
-                                        <!-- Replace with your actual PayPal business email -->
                                         <input type="hidden" name="business" value="your_paypal_business_email@example.com">
                                         <input type="hidden" name="item_name" value="Chargeback Evidence Pack">
                                         <input type="hidden" name="amount" value="49.00">
                                         <input type="hidden" name="currency_code" value="USD">
-                                        <!-- URL to return to after payment. This is where the PDF generation will be triggered. -->
                                         <input type="hidden" name="return" value="https://chargebackgenerator-com.vercel.app/success.html">
                                         <input type="hidden" name="cancel_return" value="https://chargebackgenerator-com.vercel.app/">
                                         <input type="hidden" name="custom" id="paypalCustomData" value="">
-                                        
                                         <button type="submit" class="btn btn-success btn-lg px-5">
                                             <i class="fab fa-paypal me-2"></i>
                                             Pay with PayPal - $49
                                         </button>
                                     </form>
+                                    -->
                                     <p class="text-muted mt-2 mb-0">
                                         <small><i class="fas fa-lock me-1"></i>Your data is processed securely and not stored</small>
                                     </p>
