@@ -3,1161 +3,452 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stop Overpaying for Health Insurance | FreelancerHealth.co</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            line-height: 1.6;
-            color: #2d3748;
-            background: #f7fafc;
-        }
-        
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        /* Header/Branding */
-        .header {
-            padding: 30px 20px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .logo {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: flex-start;
-            text-decoration: none;
-            color: #2d3748;
-        }
-        
-        .logo .brand-name {
-            font-size: 1.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -0.5px;
-        }
-        
-        .logo .tagline {
-            font-size: 0.75rem;
-            color: #718096;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-        
-        .nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-        
-        .nav a {
-            color: #4a5568;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s;
-        }
-        
-        .nav a:hover {
-            color: #667eea;
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 60px 20px;
-            text-align: center;
-            border-radius: 8px;
-            margin-bottom: 40px;
-        }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        
-        .hero .subtitle {
-            font-size: 1.25rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .hero .stat {
-            display: inline-block;
-            background: rgba(255,255,255,0.2);
-            padding: 15px 25px;
-            border-radius: 6px;
-            margin: 10px;
-            font-size: 1.1rem;
-        }
-        
-        /* Problem Section */
-        .problem {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .problem h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: #1a202c;
-        }
-        
-        .problem-box {
-            background: #fff5f5;
-            border-left: 4px solid #f56565;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 4px;
-        }
-        
-        .problem-box h3 {
-            color: #c53030;
-            margin-bottom: 10px;
-            font-size: 1.3rem;
-        }
-        
-        .problem-box p {
-            color: #742a2a;
-            font-size: 1.05rem;
-        }
-        
-        /* Calculator Section */
-        .calculator-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .calculator-section h2 {
-            font-size: 2rem;
-            margin-bottom: 15px;
-        }
-        
-        .calculator-section p {
-            font-size: 1.15rem;
-            margin-bottom: 30px;
-            opacity: 0.95;
-        }
-        
-        .calculator-form {
-            background: white;
-            padding: 30px;
-            border-radius: 8px;
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            color: #2d3748;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 0.95rem;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 6px;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-        
-        .btn {
-            width: 100%;
-            padding: 16px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        
-        .btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-        
-        .result-box {
-            display: none;
-            background: #fef5e7;
-            border: 2px solid #f39c12;
-            padding: 25px;
-            border-radius: 8px;
-            margin-top: 20px;
-            text-align: center;
-        }
-        
-        .result-box.show {
-            display: block;
-        }
-        
-        .result-box .warning {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .result-box h3 {
-            color: #d35400;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-        
-        .result-box p {
-            color: #7d6608;
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
-
-        /* Transition CTA */
-        .transition-cta {
-            background: #ebf8ff;
-            border: 3px solid #4299e1;
-            padding: 30px;
-            border-radius: 8px;
-            margin: 30px 0;
-            text-align: center;
-        }
-
-        .transition-cta h3 {
-            color: #2c5282;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .transition-cta p {
-            color: #2c5282;
-            font-size: 1.05rem;
-            margin-bottom: 20px;
-        }
-
-        .transition-cta .btn {
-            max-width: 400px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
-        }
-
-        /* Full Calculator */
-        .full-calculator {
-            display: none;
-        }
-
-        .full-calculator.show {
-            display: block;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        /* Results Preview with Blur */
-        .results-preview {
-            display: none;
-            background: white;
-            color: #2d3748;
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 20px;
-        }
-
-        .results-preview.show {
-            display: block;
-        }
-
-        .results-preview h3 {
-            color: #667eea;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .result-grid {
-            display: grid;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .result-item-full {
-            display: flex;
-            justify-content: space-between;
-            padding: 15px;
-            background: #f7fafc;
-            border-radius: 6px;
-        }
-
-        .result-item-full.blurred {
-            filter: blur(5px);
-            user-select: none;
-        }
-
-        .result-item-full .label {
-            font-weight: 600;
-            color: #4a5568;
-        }
-
-        .result-item-full .value {
-            font-weight: 700;
-            font-size: 1.2rem;
-            color: #667eea;
-        }
-
-        .unlock-section {
-            background: #edf2f7;
-            padding: 25px;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .unlock-section p {
-            color: #4a5568;
-            margin-bottom: 20px;
-        }
-
-        .unlock-section input[type="email"] {
-            width: 100%;
-            max-width: 400px;
-            padding: 15px;
-            border: 2px solid #667eea;
-            border-radius: 6px;
-            font-size: 1.1rem;
-            margin-bottom: 15px;
-        }
-
-        .unlock-section small {
-            display: block;
-            color: #718096;
-            margin-top: 15px;
-            font-size: 0.85rem;
-        }
-
-        .unlock-section small a {
-            color: #667eea;
-        }
-        
-        /* Solution Section */
-        .solution {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        
-        .solution h2 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: #1a202c;
-            text-align: center;
-        }
-        
-        .feature {
-            display: flex;
-            align-items: flex-start;
-            margin: 30px 0;
-            padding: 20px;
-            background: #f7fafc;
-            border-radius: 6px;
-        }
-        
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-        
-        .feature-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: #2d3748;
-        }
-        
-        .feature-content p {
-            color: #4a5568;
-            font-size: 1.05rem;
-        }
-        
-        /* Pricing */
-        .pricing {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-        
-        .pricing h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-options {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-        
-        .pricing-card {
-            background: white;
-            color: #2d3748;
-            padding: 30px;
-            border-radius: 8px;
-            flex: 1;
-            min-width: 250px;
-            max-width: 300px;
-        }
-        
-        .pricing-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .pricing-card .price {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #667eea;
-            margin: 20px 0;
-        }
-        
-        .pricing-card ul {
-            list-style: none;
-            margin-bottom: 20px;
-            text-align: left;
-        }
-        
-        .pricing-card ul li {
-            padding: 8px 0;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .pricing-card ul li:before {
-            content: "✓";
-            position: absolute;
-            left: 0;
-            color: #48bb78;
-            font-weight: bold;
-        }
-        
-        .badge {
-            display: inline-block;
-            background: #48bb78;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        /* FAQ */
-        .faq {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 8px;
-            margin-bottom: 40px;
-        }
-        
-        .faq h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-        
-        .faq-item {
-            margin-bottom: 25px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        
-        .faq-item:last-child {
-            border-bottom: none;
-        }
-        
-        .faq-item h3 {
-            font-size: 1.2rem;
-            color: #2d3748;
-            margin-bottom: 10px;
-        }
-        
-        .faq-item p {
-            color: #4a5568;
-            font-size: 1.05rem;
-        }
-        
-        /* Disclaimer */
-        .disclaimer {
-            background: #edf2f7;
-            padding: 30px;
-            border-radius: 8px;
-            text-align: center;
-            font-size: 0.9rem;
-            color: #4a5568;
-            border: 2px solid #cbd5e0;
-        }
-        
-        .disclaimer strong {
-            color: #2d3748;
-        }
-        
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .nav {
-                width: 100%;
-                flex-wrap: wrap;
-                gap: 15px;
-            }
-            
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-            
-            .hero .subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .feature {
-                flex-direction: column;
-            }
-            
-            .feature-icon {
-                margin-bottom: 10px;
-            }
-            
-            .pricing-options {
-                flex-direction: column;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    <title>Chargeback Evidence Pack Generator</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <a href="/" class="logo">
-                <span class="brand-name">FreelancerHealth</span>
-                <span class="tagline">Know Your Real Cost</span>
+    <!-- Header -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-shield-alt me-2"></i>
+                Chargeback Generator
             </a>
-            <nav class="nav">
-                <a href="#pricing">Pricing</a>
-                <a href="/blog">Blog</a>
-                <a href="/contact">Contact</a>
-            </nav>
         </div>
+    </nav>
 
-        <!-- Hero -->
-        <div class="hero">
-            <h1>Freelancers: You're Probably Overpaying for Health Insurance</h1>
-            <p class="subtitle">Your $400/month ACA premium might actually cost you $800/month (or more) once taxes hit</p>
-            <div class="stat">📊 Most freelancers lose $1,200-$2,400/year</div>
-            <div class="stat">⚠️ Due to one hidden tax calculation</div>
-        </div>
-
-        <!-- Problem Section -->
-        <div class="problem">
-            <h2>Here's What's Happening to Your Money</h2>
-            <p style="font-size: 1.15rem; margin-bottom: 30px;">If your income swings throughout the year (like most freelancers), the government estimates your health insurance subsidy based on income you <strong>predicted in January</strong>. But when April comes around...</p>
-            
-            <div class="problem-box">
-                <h3>The APTC Surprise</h3>
-                <p>You got $300/month in "Advance Premium Tax Credit" all year. But your actual income was higher than you estimated. Now you owe $2,400 back to the IRS.</p>
-            </div>
-            
-            <div class="problem-box">
-                <h3>The SEHID Trap</h3>
-                <p>You can deduct health insurance premiums as a self-employed person. But this deduction <strong>changes</strong> your eligibility for the subsidy. So now you need to recalculate everything. Most tax software gets this wrong.</p>
-            </div>
-            
-            <div class="problem-box">
-                <h3>The Real Cost</h3>
-                <p>What you thought was a $400/month premium is actually costing you $800/month after taxes and repayments. And you don't find out until it's too late to fix.</p>
-            </div>
-        </div>
-
-        <!-- FREE Simple Calculator -->
-        <div class="calculator-section">
-            <h2>🚨 Free Quick Check: Are You at Risk?</h2>
-            <p>Answer 3 questions to get a rough estimate</p>
-            
-            <div class="calculator-form">
-                <div class="form-group">
-                    <label for="monthly-income">Average Monthly Income</label>
-                    <input type="number" id="monthly-income" placeholder="e.g., 5000">
-                </div>
-                
-                <div class="form-group">
-                    <label for="monthly-premium">Monthly Premium You Pay</label>
-                    <input type="number" id="monthly-premium" placeholder="e.g., 400">
-                </div>
-                
-                <div class="form-group">
-                    <label for="monthly-aptc">Monthly APTC You Receive</label>
-                    <input type="number" id="monthly-aptc" placeholder="e.g., 200">
-                </div>
-                
-                <button class="btn btn-primary" onclick="runQuickCheck()">Check My Risk (Free)</button>
-                
-                <div class="result-box" id="simple-result">
-                    <div class="warning">⚠️</div>
-                    <h3>You May Owe $<span id="owe-amount">1,800</span> at Tax Time</h3>
-                    <p>Based on your income, you're at risk for APTC repayment. This is just a rough estimate based on simple math.</p>
-                </div>
-
-                <!-- Transition CTA -->
-                <div class="transition-cta" id="transition-cta" style="display: none;">
-                    <h3>💡 Want Your Exact Numbers?</h3>
-                    <p>Get the precise IRS calculation using the official SLCSP methodology. Know exactly what you'll owe (or get refunded) at tax time.</p>
-                    <button class="btn btn-primary" onclick="showFullCalculator()">Get Exact Calculation - $9</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- PAID Full Calculator -->
-        <div class="calculator-section full-calculator" id="full-calculator">
-            <h2>📊 Full IRS Calculator</h2>
-            <p>Enter your complete information for the exact calculation</p>
-            
-            <div class="calculator-form">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="zip-code">ZIP Code</label>
-                        <input type="text" id="zip-code" placeholder="10001" maxlength="5">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="age">Your Age</label>
-                        <input type="number" id="age" placeholder="35">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="household-size">Household Size</label>
-                        <input type="number" id="household-size" placeholder="1" min="1">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="annual-magi">Annual MAGI (Modified Adjusted Gross Income)</label>
-                        <input type="number" id="annual-magi" placeholder="60000">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="full-monthly-premium">Monthly Premium</label>
-                        <input type="number" id="full-monthly-premium" placeholder="450">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="full-monthly-aptc">Monthly APTC</label>
-                        <input type="number" id="full-monthly-aptc" placeholder="200">
-                    </div>
-                </div>
-                
-                <button class="btn btn-primary" onclick="runFullCalculation()" id="calc-btn">Calculate My Real Cost</button>
-
-                <!-- Results Preview (Blurred until payment) -->
-                <div class="results-preview" id="results-preview">
-                    <h3>Your Results Are Ready! 🎉</h3>
-                    
-                    <div class="result-grid">
-                        <div class="result-item-full">
-                            <span class="label">Real Monthly Cost:</span>
-                            <span class="value" id="preview-real-cost">$327</span>
+    <!-- Hero Section -->
+    <section class="hero-section bg-light py-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-primary mb-4">
+                        Stop Losing Chargebacks
+                    </h1>
+                    <p class="lead mb-4">
+                        Generate professional chargeback evidence packs in 60 seconds. 
+                        No integrations, no complexity - just paste your order details and get a dispute-ready PDF.
+                    </p>
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="feature-badge">
+                            <i class="fas fa-clock text-success"></i>
+                            <span>60 Second Generation</span>
                         </div>
-                        
-                        <div class="result-item-full blurred">
-                            <span class="label">Final SEHID:</span>
-                            <span class="value">$X,XXX</span>
+                        <div class="feature-badge">
+                            <i class="fas fa-universal-access text-success"></i>
+                            <span>All Platforms</span>
                         </div>
-                        
-                        <div class="result-item-full blurred">
-                            <span class="label">Final PTC:</span>
-                            <span class="value">$X,XXX</span>
-                        </div>
-                        
-                        <div class="result-item-full blurred">
-                            <span class="label">SLCSP (Second Lowest Cost Silver Plan):</span>
-                            <span class="value">$XXX</span>
-                        </div>
-                        
-                        <div class="result-item-full blurred">
-                            <span class="label">Repayment/Refund at Tax Time:</span>
-                            <span class="value">$XXX</span>
+                        <div class="feature-badge">
+                            <i class="fas fa-file-pdf text-success"></i>
+                            <span>Professional PDF</span>
                         </div>
                     </div>
-
-                    <div class="unlock-section">
-                        <p><strong>Enter your email to unlock full results + tax filing guidance</strong></p>
-                        <form id="payment-form" onsubmit="handlePayment(event)">
-                            <input type="email" id="user-email" placeholder="your@email.com" required>
-                            <button type="submit" class="btn btn-primary">Get Full Results - $9 One-Time</button>
-                            <small>
-                                By continuing, you agree to our 
-                                <a href="/privacy-policy">Privacy Policy</a> and 
-                                <a href="/terms-of-service">Terms of Service</a>
-                            </small>
-                        </form>
+                    <a href="#generator" class="btn btn-primary btn-lg">
+                        <i class="fas fa-rocket me-2"></i>
+                        Try It Now - Free Sample
+                    </a>
+                </div>
+                <div class="col-lg-6">
+                    <div class="demo-video-placeholder">
+                        <div class="video-container">
+                            <i class="fas fa-play-circle"></i>
+                            <p>Watch 45-Second Demo</p>
+                            <small>See how easy it is to generate evidence packs</small>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Solution Section -->
-        <div class="solution">
-            <h2>How We Calculate Your Real Cost</h2>
-            
-            <div class="feature">
-                <div class="feature-icon">🔬</div>
-                <div class="feature-content">
-                    <h3>The IRS Iterative Calculation Method</h3>
-                    <p>We implement the exact algorithm from IRS Publication 974 that calculates the interdependence between your health insurance deduction and your premium tax credit. Most calculators (even TurboTax) don't do this correctly.</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">💰</div>
-                <div class="feature-content">
-                    <h3>Your Real Monthly Cost</h3>
-                    <p>We show you what you'll actually pay per month after all tax benefits and repayments are factored in. No surprises in April.</p>
-                </div>
-            </div>
-            
-            <div class="feature">
-                <div class="feature-icon">📈</div>
-                <div class="feature-content">
-                    <h3>Income Scenario Planning</h3>
-                    <p>See how different income levels affect your final cost. Adjust your APTC before year-end to avoid repayment.</p>
+    <!-- Generator Section -->
+    <section id="generator" class="py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-lg">
+                        <div class="card-header bg-primary text-white text-center">
+                            <h3 class="mb-0">
+                                <i class="fas fa-magic me-2"></i>
+                                Generate Your Evidence Pack
+                            </h3>
+                            <p class="mb-0 mt-2">Fill in the details below and get your professional PDF instantly</p>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="evidenceForm">
+                                <div class="progress-container mb-4">
+                                    <div class="progress-step active">1. Build Evidence</div>
+                                    <div class="progress-step">2. Review & Pay</div>
+                                    <div class="progress-step">3. Download</div>
+                                </div>
+
+                                <div class="alert alert-warning text-center mb-4" role="alert">
+                                    <strong>Important Notice:</strong> This is a formatting tool. We do not validate or calculate totals. Please ensure all information you pasted or uploaded is accurate.
+                                </div>
+
+                                <!-- Order Information -->
+                                <div class="section-header">
+                                    <h5><i class="fas fa-shopping-cart me-2"></i>Order Information</h5>
+                                </div>
+                                
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="orderId" class="form-label">Order ID *</label>
+                                        <input type="text" class="form-control" id="orderId" placeholder="e.g., #12345" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="orderDate" class="form-label">Order Date *</label>
+                                        <input type="date" class="form-control" id="orderDate" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="orderAmount" class="form-label">Order Amount *</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">$</span>
+                                            <input type="number" class="form-control" id="orderAmount" placeholder="99.99" step="0.01" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="platform" class="form-label">Platform *</label>
+                                        <select class="form-select" id="platform" required>
+                                            <option value="">Select Platform</option>
+                                            <option value="Shopify">Shopify</option>
+                                            <option value="WooCommerce">WooCommerce</option>
+                                            <option value="BigCommerce">BigCommerce</option>
+                                            <option value="Big Cartel">Big Cartel</option>
+                                            <option value="Wix">Wix</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Merchant & Customer Information -->
+                                <div class="section-header">
+                                    <h5><i class="fas fa-user-tie me-2"></i>Merchant & Customer Information</h5>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="businessName" class="form-label">Business Name *</label>
+                                        <input type="text" class="form-control" id="businessName" placeholder="Your Business LLC" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="customerName" class="form-label">Customer Name *</label>
+                                        <input type="text" class="form-control" id="customerName" placeholder="John Doe" required>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="businessContact" class="form-label">Business Contact (Email/Phone) *</label>
+                                        <input type="text" class="form-control" id="businessContact" placeholder="your@email.com" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="customerEmail" class="form-label">Customer Email *</label>
+                                        <input type="email" class="form-control" id="customerEmail" placeholder="customer@email.com" required>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="billingShippingAddress" class="form-label">Billing/Shipping Address *</label>
+                                    <textarea class="form-control" id="billingShippingAddress" rows="3" placeholder="123 Main St, City, State, ZIP" required></textarea>
+                                </div>
+
+                                <!-- Order Details -->
+                                <div class="section-header">
+                                    <h5><i class="fas fa-receipt me-2"></i>Order Details</h5>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="orderSummary" class="form-label">Paste order summary from your platform *</label>
+                                    <textarea class="form-control" id="orderSummary" rows="5" placeholder="Example:
+iPhone 13 - Qty: 1 - $699.00
+Protective Case - Qty: 1 - $29.99
+Shipping - $15.00
+Total: $743.99" required></textarea>
+                                </div>
+
+                                <!-- Shipping & Delivery Proof -->
+                                <div class="section-header">
+                                    <h5><i class="fas fa-shipping-fast me-2"></i>Shipping & Delivery Proof</h5>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="shippingAddress" class="form-label">Shipping Address *</label>
+                                    <textarea class="form-control" id="shippingAddress" rows="3" placeholder="123 Main St, City, State, ZIP" required></textarea>
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-6">
+                                        <label for="trackingNumber" class="form-label">Tracking Number</label>
+                                        <input type="text" class="form-control" id="trackingNumber" placeholder="e.g., 1Z9999999999999999">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="deliveryDate" class="form-label">Delivered on:</label>
+                                        <input type="date" class="form-control" id="deliveryDate">
+                                    </div>
+                                </div>
+
+                                <!-- Communication History -->
+                                <div class="section-header">
+                                    <h5><i class="fas fa-comments me-2"></i>Communication History</h5>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="customerCommunication" class="form-label">Communication History</label>
+                                    <textarea class="form-control" id="customerCommunication" rows="4" placeholder="Paste relevant emails or chat logs here, then click Summarize."></textarea>
+                                    <button class="btn btn-outline-primary mt-2" type="button" id="summarizeBtn">
+                                        <i class="fas fa-magic me-1"></i> Summarize with AI
+                                    </button>
+                                </div>
+
+                                <!-- Rebuttal & Supporting Evidence -->
+                                <div class="section-header">
+                                    <h5><i class="fas fa-gavel me-2"></i>Rebuttal & Supporting Evidence</h5>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="refundPolicy" class="form-label">Your Refund/Terms of Service Policy</label>
+                                    <textarea class="form-control" id="refundPolicy" rows="3" placeholder="Paste the relevant section of your policies that applies to this dispute."></textarea>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="rebuttalMemo" class="form-label">Rebuttal Memo</label>
+                                    <textarea class="form-control" id="rebuttalMemo" rows="5" placeholder="Click the button below to draft a rebuttal based on the information you've provided."></textarea>
+                                    <button class="btn btn-primary mt-2" type="button" id="draftRebuttalBtn">
+                                        <i class="fas fa-magic me-1"></i> Draft Rebuttal Memo with AI
+                                    </button>
+                                    <small class="form-text text-muted d-block mt-2">
+                                        <i class="fas fa-exclamation-circle me-1"></i>
+                                        <strong>Important:</strong> Please review and edit the generated memo before submitting your evidence pack. Verify all information is accurate for your specific case.
+                                    </small>
+                                </div>
+
+                                <!-- Generate Button -->
+                                <div class="text-center mt-4">
+                                    <!-- 
+                                        *** FIX APPLIED HERE ***
+                                        The original code had the PayPal form inside the main evidenceForm, which is incorrect.
+                                        The PayPal form is now outside the main form, and the button is a standard button.
+                                        The PayPal form is also commented out as it contains a placeholder email.
+                                        The button is now a standard button that will be handled by the script.js to collect form data before payment.
+                                    -->
+                                    <button type="button" class="btn btn-success btn-lg px-5" id="payPalButton">
+                                        <i class="fab fa-paypal me-2"></i>
+                                        Pay with PayPal - $49
+                                    </button>
+                                    
+                                    <!-- Placeholder PayPal Form (Commented out to prevent accidental use with placeholder email) -->
+                                    <!-- 
+                                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" id="paypalForm">
+                                        <input type="hidden" name="cmd" value="_xclick">
+                                        <input type="hidden" name="business" value="your_paypal_business_email@example.com">
+                                        <input type="hidden" name="item_name" value="Chargeback Evidence Pack">
+                                        <input type="hidden" name="amount" value="49.00">
+                                        <input type="hidden" name="currency_code" value="USD">
+                                        <input type="hidden" name="return" value="https://chargebackgenerator-com.vercel.app/success.html">
+                                        <input type="hidden" name="cancel_return" value="https://chargebackgenerator-com.vercel.app/">
+                                        <input type="hidden" name="custom" id="paypalCustomData" value="">
+                                        <button type="submit" class="btn btn-success btn-lg px-5">
+                                            <i class="fab fa-paypal me-2"></i>
+                                            Pay with PayPal - $49
+                                        </button>
+                                    </form>
+                                    -->
+                                    <p class="text-muted mt-2 mb-0">
+                                        <small><i class="fas fa-lock me-1"></i>Your data is processed securely and not stored</small>
+                                    </p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </section>
 
-        <!-- Pricing -->
-        <div class="pricing" id="pricing">
-            <h2>Choose Your Plan</h2>
-            
-            <div class="pricing-options">
-                <div class="pricing-card">
-                    <h3>One-Time Check</h3>
-                    <div class="price">$9</div>
-                    <ul>
-                        <li>Full IRS Iterative Calculation</li>
-                        <li>SLCSP lookup for your ZIP</li>
-                        <li>Detailed results breakdown</li>
-                        <li>Tax filing instructions</li>
-                        <li>Print/Save results</li>
-                    </ul>
-                    <button class="btn btn-primary" onclick="scrollToFullCalc()">Calculate Now</button>
-                </div>
-                
-                <div class="pricing-card">
-                    <span class="badge">COMING SOON</span>
-                    <h3>Monthly</h3>
-                    <div class="price">$9<span style="font-size: 1rem; color: #718096;">/mo</span></div>
-                    <ul>
-                        <li>Everything in One-Time</li>
-                        <li>Unlimited recalculations</li>
-                        <li>Quarterly income tracking</li>
-                        <li>Email reminders to update</li>
-                        <li>Priority support</li>
-                    </ul>
-                    <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">Coming Soon</button>
-                </div>
-
-                <div class="pricing-card">
-                    <span class="badge" style="background: #718096;">COMING SOON</span>
-                    <h3>Annual</h3>
-                    <div class="price">$90<span style="font-size: 1rem; color: #718096;">/year</span></div>
-                    <p style="color: #48bb78; font-weight: 600; margin-bottom: 15px;">Save $18 (17%)</p>
-                    <ul>
-                        <li>Everything in Monthly</li>
-                        <li>Year-end tax summary</li>
-                        <li>Historical tracking</li>
-                        <li>Tax season priority support</li>
-                    </ul>
-                    <button class="btn btn-primary" disabled style="opacity: 0.6; cursor: not-allowed;">Coming Soon</button>
+    <!-- Features Section -->
+    <section class="features-section bg-light py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="fw-bold">Why Choose Our Evidence Generator?</h2>
+                    <p class="lead text-muted">Save time, reduce errors, win more disputes</p>
                 </div>
             </div>
-            
-            <p style="margin-top: 20px; opacity: 0.9;">💡 Average user saves $1,200/year in avoided overpayments</p>
-        </div>
-
-        <!-- FAQ -->
-        <div class="faq">
-            <h2>Frequently Asked Questions</h2>
-            
-            <div class="faq-item">
-                <h3>What's the difference between the free and paid calculator?</h3>
-                <p>The free Quick Check gives you a rough estimate based on simple math. The paid Full Calculator uses your exact ZIP code to look up the Second Lowest Cost Silver Plan (SLCSP) and runs the complete IRS iterative calculation to give you precise numbers.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Why can't I use the Healthcare.gov calculator?</h3>
-                <p>Healthcare.gov only estimates your APTC based on your predicted income. It doesn't calculate the final reconciliation or factor in the Self-Employed Health Insurance Deduction (SEHID), which changes your APTC eligibility. Our tool solves the full interdependent tax problem.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Is this actual tax advice?</h3>
-                <p>No. This is an estimator tool for planning purposes only. We use IRS-published formulas, but you should always consult a tax professional for personalized advice.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>How accurate is the full calculator?</h3>
-                <p>We implement the exact IRS Iterative Calculation Method from Publication 974. Our test cases match IRS examples within $1. However, your actual tax situation may vary based on factors not captured in the calculator.</p>
-            </div>
-            
-            <div class="faq-item">
-                <h3>Do you store my personal information?</h3>
-                <p>We only store your email and calculation results after payment. We don't store financial data or personally identifiable information beyond what's needed to send you results.</p>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h5>60-Second Generation</h5>
+                        <p>What used to take 30-60 minutes now takes less than a minute. Just fill the form and download your PDF.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-universal-access"></i>
+                        </div>
+                        <h5>Works with Any Platform</h5>
+                        <p>Shopify, Big Cartel, BigCommerce, WooCommerce - our tool works with any e-commerce platform.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h5>Higher Win Rates</h5>
+                        <p>Professional formatting and complete evidence compilation increase your chances of winning disputes.</p>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- Disclaimer -->
-        <div class="disclaimer">
-            <p><strong>Important Legal Disclaimer:</strong> This tool provides estimates for tax planning purposes only and is not tax, legal, or financial advice. The calculations are based on IRS-published formulas but do not account for all possible tax situations. You should consult a licensed tax professional or CPA for personalized guidance. FreelancerHealth.co is not affiliated with the IRS, Healthcare.gov, or any government agency.</p>
+    <!-- FAQ & Policies Section -->
+    <section class="faq-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-12">
+                    <h2 class="fw-bold">Frequently Asked Questions & Policies</h2>
+                    <p class="lead text-muted">Everything you need to know about our service</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                    When would we issue a refund?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    We issue refunds only in cases where our tool fails to generate a PDF evidence pack after a successful payment. This means if you pay for a pack and do not receive a downloadable PDF, you are eligible for a full refund. Refund requests must be made within 7 days of the failed generation attempt.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                    Why would we NOT issue a refund?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    We do not issue refunds for:
+                                    <ul>
+                                        <li>Chargeback disputes lost after using our tool. Our tool is for formatting and organizing evidence; it does not guarantee a win.</li>
+                                        <li>Incorrect information entered by the user. Please ensure all data is accurate before generating the pack.</li>
+                                        <li>User error in downloading or saving the generated PDF.</li>
+                                        <li>Change of mind after a successful generation.</li>
+                                        <li>Any issues arising from the content or validity of the evidence provided by the user.</li>
+                                    </ul>
+                                    By using our service, you agree that you understand our tool is a formatting aid and not a guarantee of dispute success.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                    Terms of Service & Privacy Policy
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    Our Terms of Service and Privacy Policy are designed to be simple and transparent. We are a document formatting tool. We do not store any user credentials or sensitive data on our servers. All processing happens client-side or through secure, temporary connections for PDF generation. We do not guarantee the outcome of any chargeback dispute. By using our service, you agree to these terms.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <p class="lead text-muted">Still have questions? <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact Us</a></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Contact Support</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="contactForm" action="https://formspree.io/f/xqayrkdb" method="POST">
+                        <input type="hidden" name="_subject" value="Chargeback Generator - Contact Form">
+                        <div class="alert alert-info text-center mb-3">
+                            Please allow up to 24 hours for a response.
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactName" class="form-label">Your Name</label>
+                            <input type="text" class="form-control" name="name" id="contactName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactEmail" class="form-label">Your Email</label>
+                            <input type="email" class="form-control" name="email" id="contactEmail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="contactMessage" class="form-label">Message</label>
+                            <textarea class="form-control" name="message" id="contactMessage" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 
-    <footer style="background: #2d3748; color: white; padding: 40px 20px; text-align: center; margin-top: 60px;">
-        <div style="margin-bottom: 20px;">
-            <a href="/about" style="color: #cbd5e0; text-decoration: none; margin: 0 15px;">About</a>
-            <a href="/blog" style="color: #cbd5e0; text-decoration: none; margin: 0 15px;">Blog</a>
-            <a href="/contact" style="color: #cbd5e0; text-decoration: none; margin: 0 15px;">Contact</a>
-            <a href="/privacy-policy" style="color: #cbd5e0; text-decoration: none; margin: 0 15px;">Privacy</a>
-            <a href="/terms-of-service" style="color: #cbd5e0; text-decoration: none; margin: 0 15px;">Terms</a>
-            <a href="/refund-policy" style="color: #cbd5e0; text-decoration: none; margin: 0 15px;">Refunds</a>
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>Chargeback Generator</h5>
+                    <p class="mb-0">Helping e-commerce businesses win more disputes, one evidence pack at a time.</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">
+                        <a href="blog.html" class="text-white text-decoration-none me-3">Blog</a>
+                        <a href="privacy-policy.html" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                        <a href="terms-of-service.html" class="text-white text-decoration-none me-3">Terms of Service</a>
+                        <a href="refund-policy.html" class="text-white text-decoration-none">Refund Policy</a>
+                    </p>
+                    <p class="mb-0 mt-2">&copy; 2025 Chargeback Generator. All rights reserved.</p>
+                    <p class="mb-0"><small>This is a document formatting tool. We offer no guarantee of chargeback success.</small></p>
+                </div>
+            </div>
         </div>
-        <p style="color: #a0aec0;">© 2025 FreelancerHealth. All rights reserved.</p>
     </footer>
 
-    <script>
-        // ⚠️ TEST MODE - Set to false when ready for production
-        const TEST_MODE = true;
-        
-        // LemonSqueezy Configuration
-        const LEMONSQUEEZY_STORE_URL = 'https://yourstore.lemonsqueezy.com';
-        const ONETIME_VARIANT_ID = 'YOUR_VARIANT_ID_HERE';
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center py-5">
+                    <div class="spinner-border text-primary mb-3">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <h5>Generating Your Evidence Pack...</h5>
+                    <p class="text-muted mb-0">This will take just a moment</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Simple Calculator (Free)
-        function runQuickCheck() {
-            const income = parseFloat(document.getElementById('monthly-income').value);
-            const premium = parseFloat(document.getElementById('monthly-premium').value);
-            const aptc = parseFloat(document.getElementById('monthly-aptc').value);
-            
-            if (!income || !premium || !aptc) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            const annualIncome = income * 12;
-            const annualAPTC = aptc * 12;
-            
-            let estimatedOwed = 0;
-            if (annualIncome > 40000 && annualIncome < 60000) {
-                estimatedOwed = Math.floor(annualAPTC * 0.3);
-            } else if (annualIncome >= 60000) {
-                estimatedOwed = Math.floor(annualAPTC * 0.5);
-            } else {
-                estimatedOwed = Math.floor(annualAPTC * 0.15);
-            }
-            
-            document.getElementById('owe-amount').textContent = estimatedOwed.toLocaleString();
-            document.getElementById('simple-result').classList.add('show');
-            
-            // Show transition CTA after 1 second
-            setTimeout(() => {
-                document.getElementById('transition-cta').style.display = 'block';
-                document.getElementById('transition-cta').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            }, 1000);
-        }
-
-        function showFullCalculator() {
-            // Copy values from simple calculator if filled
-            const simpleIncome = document.getElementById('monthly-income').value;
-            const simplePremium = document.getElementById('monthly-premium').value;
-            const simpleAPTC = document.getElementById('monthly-aptc').value;
-            
-            if (simpleIncome) {
-                document.getElementById('annual-magi').value = simpleIncome * 12;
-            }
-            if (simplePremium) {
-                document.getElementById('full-monthly-premium').value = simplePremium;
-            }
-            if (simpleAPTC) {
-                document.getElementById('full-monthly-aptc').value = simpleAPTC;
-            }
-            
-            // Show full calculator
-            document.getElementById('full-calculator').classList.add('show');
-            document.getElementById('full-calculator').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function scrollToFullCalc() {
-            showFullCalculator();
-        }
-
-        // Full Calculator (Paid)
-        async function runFullCalculation() {
-            const zipCode = document.getElementById('zip-code').value;
-            const age = parseInt(document.getElementById('age').value);
-            const householdSize = parseInt(document.getElementById('household-size').value);
-            const annualMAGI = parseFloat(document.getElementById('annual-magi').value);
-            const monthlyPremium = parseFloat(document.getElementById('full-monthly-premium').value);
-            const monthlyAPTC = parseFloat(document.getElementById('full-monthly-aptc').value);
-            
-            // Validation
-            if (!zipCode || !age || !householdSize || !annualMAGI || !monthlyPremium || !monthlyAPTC) {
-                alert('Please fill in all fields');
-                return;
-            }
-
-            if (zipCode.length !== 5) {
-                alert('Please enter a valid 5-digit ZIP code');
-                return;
-            }
-
-            const calcBtn = document.getElementById('calc-btn');
-            const originalText = calcBtn.textContent;
-            calcBtn.textContent = 'Calculating...';
-            calcBtn.disabled = true;
-
-            try {
-                if (TEST_MODE) {
-                    // TEST MODE: Simulate calculation
-                    console.log('🧪 TEST MODE - Full Calculation');
-                    console.log({
-                        zipCode,
-                        age,
-                        householdSize,
-                        annualMAGI,
-                        monthlyPremium,
-                        monthlyAPTC
-                    });
-
-                    // Simulate delay
-                    await new Promise(resolve => setTimeout(resolve, 1500));
-
-                    // Show preview with estimated real cost
-                    const estimatedRealCost = Math.floor(monthlyPremium * 0.73);
-                    document.getElementById('preview-real-cost').textContent = `${estimatedRealCost}`;
-                    
-                    // Store calculation data
-                    sessionStorage.setItem('fullCalculationData', JSON.stringify({
-                        zipCode,
-                        age,
-                        householdSize,
-                        annualMAGI,
-                        monthlyPremium,
-                        monthlyAPTC,
-                        timestamp: Date.now()
-                    }));
-
-                    // Show results preview
-                    document.getElementById('results-preview').classList.add('show');
-                    document.getElementById('results-preview').scrollIntoView({ behavior: 'smooth' });
-
-                    calcBtn.textContent = originalText;
-                    calcBtn.disabled = false;
-                    return;
-                }
-
-                // PRODUCTION: Call actual API
-                // Step 1: Get SLCSP
-                const slcspResponse = await fetch('/api/slcsp_lookup', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        zip_code: zipCode,
-                        age: age
-                    })
-                });
-
-                if (!slcspResponse.ok) {
-                    throw new Error('Failed to look up SLCSP');
-                }
-
-                const slcspData = await slcspResponse.json();
-                const slcsp = slcspData.slcsp;
-
-                // Step 2: Calculate full results
-                const calcResponse = await fetch('/api/calculate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        household_size: householdSize,
-                        magi: annualMAGI,
-                        monthly_premium: monthlyPremium,
-                        monthly_aptc: monthlyAPTC,
-                        slcsp: slcsp
-                    })
-                });
-
-                if (!calcResponse.ok) {
-                    throw new Error('Calculation failed');
-                }
-
-                const results = await calcResponse.json();
-
-                // Show preview
-                document.getElementById('preview-real-cost').textContent = `${results.real_monthly_cost}`;
-                
-                // Store full results
-                sessionStorage.setItem('fullCalculationResults', JSON.stringify(results));
-                sessionStorage.setItem('fullCalculationData', JSON.stringify({
-                    zipCode,
-                    age,
-                    householdSize,
-                    annualMAGI,
-                    monthlyPremium,
-                    monthlyAPTC,
-                    slcsp,
-                    timestamp: Date.now()
-                }));
-
-                // Show results preview
-                document.getElementById('results-preview').classList.add('show');
-                document.getElementById('results-preview').scrollIntoView({ behavior: 'smooth' });
-
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Calculation failed. Please check your inputs and try again.');
-            } finally {
-                calcBtn.textContent = originalText;
-                calcBtn.disabled = false;
-            }
-        }
-
-        // Payment Handler
-        async function handlePayment(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('user-email').value;
-            const calculationData = JSON.parse(sessionStorage.getItem('fullCalculationData') || '{}');
-            
-            const submitBtn = event.target.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Processing...';
-            submitBtn.disabled = true;
-
-            try {
-                if (TEST_MODE) {
-                    // TEST MODE: Show alert
-                    console.log('🧪 TEST MODE - Payment');
-                    console.log('Email:', email);
-                    console.log('Calculation Data:', calculationData);
-
-                    await new Promise(resolve => setTimeout(resolve, 1000));
-
-                    const message = `✅ TEST MODE - Payment Flow\n\n` +
-                        `Email: ${email}\n` +
-                        `ZIP: ${calculationData.zipCode}\n` +
-                        `Age: ${calculationData.age}\n` +
-                        `MAGI: ${calculationData.annualMAGI}\n\n` +
-                        `In production, this would:\n` +
-                        `1. Save to database via /api/create-calculation\n` +
-                        `2. Redirect to LemonSqueezy checkout ($9)\n` +
-                        `3. Send full results email after payment\n\n` +
-                        `For now, the blurred results would be:\n` +
-                        `- Final SEHID: ~${Math.floor(calculationData.monthlyPremium * 12)}\n` +
-                        `- Final PTC: ~${Math.floor(calculationData.monthlyAPTC * 12 * 0.85)}\n` +
-                        `- Repayment/Refund: Varies based on income`;
-
-                    alert(message);
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                    return;
-                }
-
-                // PRODUCTION: Save and redirect
-                const response = await fetch('/api/create-calculation', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email: email,
-                        ...calculationData
-                    })
-                });
-
-                const result = await response.json();
-
-                if (result.success) {
-                    const sessionId = result.sessionId;
-                    window.location.href = `${LEMONSQUEEZY_STORE_URL}/checkout/buy/${ONETIME_VARIANT_ID}?checkout[custom][session_id]=${sessionId}&checkout[email]=${encodeURIComponent(email)}`;
-                } else {
-                    throw new Error('Failed to save calculation');
-                }
-
-            } catch (error) {
-                console.error('Error:', error);
-                alert('Sorry, something went wrong. Please try again.');
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        }
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
